@@ -28,7 +28,7 @@ class ReplEmail(object):
     
     def contacts(self):
         """Get a list of contacts"""
-        return self._call('/contacts')
+        return self._call('/contacts').json()
     
     def send(self, to: list, subject: str, text=None, html=None):
         """Send an email"""
