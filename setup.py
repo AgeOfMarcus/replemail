@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(name="replemail",
-    version="0.1.0",
+    version="0.1.1",
     description="API for https://repl.email",
     long_description='API for https://repl.email',
     url="https://github.com/AgeOfMarcus/replemail",

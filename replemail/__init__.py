@@ -58,3 +58,7 @@ class ReplEmail(object):
     def flag(self, ids: list, flags: list):
         """Change message flags (not update, change)"""
         return self._call('/flags', data={'ids': ids, 'flags': flags}).text
+    
+    def sent(self):
+        """Get sent messages"""
+        return self._call('/sent').json()
