@@ -12,8 +12,18 @@ class ReplEmail(object):
         self._load()
     
     # internal
-    def _call(self, route, data={}):
-        return self.session.post(f'{self.base}{route}', json=data)
+    def _call(self, route, data={}, retry=True):
+        r = self.session.post(f'{self.base}{route}', json=data)
+        try:
+            res = r.json()
+            if 'err' in res:
+                if retry:
+                    self._load()
+                    return self._call(route, data=data, retry=False)
+        except:
+            pass
+        finally:
+            return r
     
     def _load(self):
         return self._call('/load', data={
