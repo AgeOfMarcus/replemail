@@ -61,9 +61,9 @@ class ReplEmail(object):
         """Permanently delete an email from ID"""
         return self._call('/delete/forever', data={'id': id}).text
     
-    def fetch(self):
+    def fetch(self, num=-1):
         """Fetch emails"""
-        return self._call('/get').json()
+        return self._call('/get', {'num': num}).json()
     
     def flag(self, emails: dict):
         """Change message flags (not update, change)"""
@@ -72,3 +72,6 @@ class ReplEmail(object):
     def sent(self):
         """Get sent messages"""
         return self._call('/sent').json()
+    
+    def search_by_flag(self, flag, num=-1):
+        return self._call('/get/by/flag', {'flag': flag, 'num': num}).json()
