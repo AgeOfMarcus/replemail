@@ -65,9 +65,9 @@ class ReplEmail(object):
         """Fetch emails"""
         return self._call('/get').json()
     
-    def flag(self, ids: list, flags: list):
+    def flag(self, emails: dict):
         """Change message flags (not update, change)"""
-        return self._call('/flags', data={'ids': ids, 'flags': flags}).text
+        return self._call('/flags', emails).text
     
     def sent(self):
         """Get sent messages"""
