@@ -1,4 +1,4 @@
-import requests
+import requests, base64
 
 class ReplEmail(object):
     def __init__(self, username, api_key):
@@ -75,3 +75,9 @@ class ReplEmail(object):
     
     def search_by_flag(self, flag, num=-1):
         return self._call('/get/by/flag', {'flag': flag, 'num': num}).json()
+    
+    def upload(self, raw, filename):
+        return self._call('/upload', {
+            'filename': filename,
+            'data': base64.b64encode(raw).decode()
+        }).json()
