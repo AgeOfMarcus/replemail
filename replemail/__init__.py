@@ -40,13 +40,14 @@ class ReplEmail(object):
         """Get a list of contacts"""
         return self._call('/contacts').json()
     
-    def send(self, to: list, subject: str, text=None, html=None):
+    def send(self, to: list, subject: str, text: str=None, html: str=None, send_at=None):
         """Send an email"""
         return self._call('/send', data={
             'to': to,
             'subject': subject,
             'text': text,
             'html': html,
+            'send_at': send_at,
         }).json()
     
     def settings(self, **kwargs):
@@ -72,9 +73,6 @@ class ReplEmail(object):
     def sent(self):
         """Get sent messages"""
         return self._call('/sent').json()
-    
-    def search_by_flag(self, flag, num=-1):
-        return self._call('/get/by/flag', {'flag': flag, 'num': num}).json()
     
     def upload(self, raw, filename):
         return self._call('/upload', {
